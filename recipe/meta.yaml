@@ -1,7 +1,7 @@
 {% set name = "pytest-variables" %}
-{% set version = "1.9.0" %}
+{% set version = "2.0.0" %}
 {% set hash_type = "sha256" %}
-{% set hash = "f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a" %}
+{% set hash = "1c9e4fc321e33be7d1b352ac9cf20fdd2c39a8e4e6fa2dcd042aaf70ed516be7" %}
 
 
 package:
