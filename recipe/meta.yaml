@@ -1,44 +1,44 @@
 {% set name = "pytest-variables" %}
-{% set version = "1.9.0" %}
-{% set hash_type = "sha256" %}
-{% set hash = "f79851e4c92a94c93d3f1d02377b5ac97cc8800392e87d108d2cbfda774ecc2a" %}
-
+{% set version = "3.0.0" %}
 
 package:
-  name: {{ name }}
+  name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
-  url: https://pypi.io/packages/source/p/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  {{ hash_type }}: {{ hash }}
+  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest_variables-{{ version }}.tar.gz
+  sha256: ab84235417afac5a0a7dd4c3918287d9c7329d2e16d570d6e943f8d8e02533b9
 
 build:
-    number: 1
-    script: pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+    number: 0
+    script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
 
 requirements:
   host:
     - python
-    - setuptools
-    - setuptools_scm
-    - pytest >=2.4.2
-
+    - hatch-vcs
+    - hatchling
+    - pip
   run:
     - python
-    - setuptools
-    - pytest >=2.4.2
+    - pytest >=7.0.0
 
 test:
   imports:
     - pytest_variables
+  commands:
+    - pip check
+  requires:
+    - pip
 
 about:
   home: https://github.com/pytest-dev/pytest-variables
-  license: MPL 2.0
+  license: MPL-2.0
   license_family: OTHER
   license_file: LICENSE
-  summary: 'pytest plugin for providing variables to tests/fixtures'
+  summary: pytest plugin for providing variables to tests/fixtures
+  dev_url: https://github.com/pytest-dev/pytest-variables
+  doc_url: https://github.com/pytest-dev/pytest-variables
 
 extra:
   recipe-maintainers:
