@@ -1,23 +1,24 @@
 {% set name = "pytest-variables" %}
-{% set version = "3.0.0" %}
+{% set version = "3.1.0" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pytest_variables-{{ version }}.tar.gz
-  sha256: ab84235417afac5a0a7dd4c3918287d9c7329d2e16d570d6e943f8d8e02533b9
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pytest_variables-{{ version }}.tar.gz
+  sha256: 4719b07f0f6e5d07829b19284a99d9159543a2e0336311f7bc4ee3b1617f595d
 
 build:
-    number: 0
-    script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  number: 0
+  script: {{ PYTHON }} -m pip install . --no-deps --no-build-isolation --ignore-installed --no-cache-dir -vv
+  skip: true  # [py<38]
 
 requirements:
   host:
     - python
-    - hatch-vcs
-    - hatchling
+    - hatch-vcs >=0.3
+    - hatchling >=1.13
     - pip
   run:
     - python
