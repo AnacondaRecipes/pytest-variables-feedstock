@@ -44,9 +44,10 @@ test:
 about:
   home: https://github.com/pytest-dev/pytest-variables
   license: MPL-2.0
-  license_family: OTHER
+  license_family: Mozilla
   license_file: LICENSE
   summary: pytest plugin for providing variables to tests/fixtures
+  description: pytest plugin for providing variables to tests/fixtures
   dev_url: https://github.com/pytest-dev/pytest-variables
   doc_url: https://github.com/pytest-dev/pytest-variables
 
