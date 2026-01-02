@@ -6,7 +6,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pytest_variables-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name|replace('-', '_') }}-{{ version }}.tar.gz
   sha256: 4719b07f0f6e5d07829b19284a99d9159543a2e0336311f7bc4ee3b1617f595d
 
 build:
@@ -24,13 +24,23 @@ requirements:
     - python
     - pytest >=7.0.0
 
+# INTERNALERROR> SystemExit: hjson import error, please make sure that hjson is installed
+{% set deselect_tests = " --deselect=tests/test_variables.py::test_invalid_format[hjson]" %}
+
 test:
+  source_files:
+    - tests
   imports:
     - pytest_variables
   commands:
     - pip check
+    - python -c "from importlib.metadata import version; assert(version('{{ name }}')=='{{ version }}')"
+    - pytest -v {{ deselect_tests }} tests
   requires:
     - pip
+    - pytest
+    - pyyaml
+    - toml
 
 about:
   home: https://github.com/pytest-dev/pytest-variables
